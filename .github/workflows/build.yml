@@ -3,25 +3,60 @@ name: Build Android APK
 on:
   push:
     branches: [ main ]
+  workflow_dispatch: # Allows manual trigger
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-      - name: Build with Buildozer
-        uses: ArtemSBulgakov/buildozer-action@v1
-        id: buildozer
+      - name: Setup Python
+        uses: actions/setup-python@v4
         with:
-          command: buildozer android debug
-          buildozer_version: master
-          workdir: AndroidProject
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            git \
+            python3-dev \
+            ffmpeg \
+            libsdl2-dev \
+            libsdl2-image-dev \
+            libsdl2-mixer-dev \
+            libsdl2-ttf-dev \
+            libportmidi-dev \
+            libswscale-dev \
+            libavformat-dev \
+            libavcodec-dev \
+            zlib1g-dev \
+            libffi-dev \
+            libssl-dev \
+            autoconf \
+            automake \
+            libtool \
+            pkg-config \
+            cmake \
+            openjdk-17-jdk
+
+      - name: Install Buildozer
+        run: |
+          pip install --upgrade pip
+          pip install buildozer cython==0.29.33
+
+      - name: Build APK with Buildozer
+        working-directory: AndroidProject
+        run: |
+          yes | buildozer android debug
+        continue-on-error: false
 
       - name: Upload APK
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
-          name: nexus-wordlist-apk
+          name: NexusWordlist-APK
           path: AndroidProject/bin/*.apk
