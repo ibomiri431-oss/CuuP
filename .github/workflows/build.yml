@@ -1,0 +1,27 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build with Buildozer
+        uses: ArtemSBulgakov/buildozer-action@v1
+        id: buildozer
+        with:
+          command: buildozer android debug
+          buildozer_version: master
+          workdir: AndroidProject
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: nexus-wordlist-apk
+          path: AndroidProject/bin/*.apk
