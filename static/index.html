@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Wordlist Oluşturucu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="cyber-grid"></div>
+    <div class="overlay"></div>
+
+    <div class="main-container">
+        <header>
+            <div class="logo-box">
+                <h1>NEXUS</h1>
+                <span class="badge">V2.0</span>
+            </div>
+            <p>GELİŞMİŞ PAROLA PROFİLLEYİCİ</p>
+        </header>
+
+        <form id="nexusForm" onsubmit="return false;">
+            
+            <!-- Section 1: HEDEF -->
+            <div class="section-title">
+                <span class="icon">🎯</span> HEDEF BİLGİLERİ
+            </div>
+            <div class="grid-2">
+                <div class="input-box">
+                    <input type="text" id="name" required placeholder=" ">
+                    <label>Adı (Zorunlu)</label>
+                    <div class="line"></div>
+                </div>
+                <div class="input-box">
+                    <input type="text" id="surname" placeholder=" ">
+                    <label>Soyadı</label>
+                    <div class="line"></div>
+                </div>
+                <div class="input-box">
+                    <input type="text" id="nick" placeholder=" ">
+                    <label>Takma Adı</label>
+                    <div class="line"></div>
+                </div>
+                <div class="input-box">
+                    <input type="text" id="birthdate" maxlength="8" placeholder=" ">
+                    <label>Doğum Tarihi (GGAAAAYYYY)</label>
+                    <div class="line"></div>
+                </div>
+            </div>
+
+            <!-- Section 2: EŞ/SEVGİLİ -->
+            <div class="section-title">
+                <span class="icon">❤️</span> EŞ / SEVGİLİ
+            </div>
+            <div class="grid-2">
+                <div class="input-box">
+                    <input type="text" id="wife" placeholder=" ">
+                    <label>Eşin Adı</label>
+                    <div class="line"></div>
+                </div>
+                <div class="input-box">
+                    <input type="text" id="wifen" placeholder=" ">
+                    <label>Eşin Takma Adı</label>
+                    <div class="line"></div>
+                </div>
+                <div class="input-box">
+                    <input type="text" id="wifeb" maxlength="8" placeholder=" ">
+                    <label>Eşin D. Tarihi (GGAAAAYYYY)</label>
+                    <div class="line"></div>
+                </div>
+            </div>
+
+            <!-- Section 3: DETAYLAR -->
+            <div class="section-title">
+                <span class="icon">⚡</span> EKSTRA DETAYLAR
+            </div>
+            <div class="grid-2">
+                <div class="input-box">
+                    <input type="text" id="kid" placeholder=" ">
+                    <label>Çocuk Adı</label>
+                    <div class="line"></div>
+                </div>
+                <div class="input-box">
+                    <input type="text" id="pet" placeholder=" ">
+                    <label>Evcil Hayvan</label>
+                    <div class="line"></div>
+                </div>
+                <div class="input-box">
+                    <input type="text" id="company" placeholder=" ">
+                    <label>Şirket Adı</label>
+                    <div class="line"></div>
+                </div>
+                <div class="input-box">
+                    <input type="text" id="words" placeholder=" ">
+                    <label>Ekstra Kelimeler (Virgülle ayır)</label>
+                    <div class="line"></div>
+                </div>
+            </div>
+
+            <!-- Section 4: AYARLAR -->
+            <div class="settings-box">
+                <label class="toggle">
+                    <input type="checkbox" id="spechars" checked>
+                    <span class="slider"></span>
+                    <span class="label-text">Özel Karakterler (!@#)</span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" id="randnum" checked>
+                    <span class="slider"></span>
+                    <span class="label-text">Rastgele Sayılar (0-100)</span>
+                </label>
+                <label class="toggle">
+                    <input type="checkbox" id="leetmode" checked>
+                    <span class="slider"></span>
+                    <span class="label-text">Hacker Dili (L33t M0d3)</span>
+                </label>
+            </div>
+
+            <button onclick="startProcess()" id="btnAction">
+                HARMANLAMAYI BAŞLAT
+                <div class="btn-glitch"></div>
+            </button>
+
+        </form>
+
+        <div id="resultModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="success-anim">✔</div>
+                <h2>BAŞARILI!</h2>
+                <p id="resText">Wordlist oluşturuldu.</p>
+                <div class="file-path" id="filePath">C:/Users/.../Downloads/file.txt</div>
+                <button class="secondary-btn" onclick="closeModal()">YENİ OLUŞTUR</button>
+            </div>
+        </div>
+
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>
